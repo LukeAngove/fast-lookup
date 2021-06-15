@@ -9,11 +9,9 @@ if __name__ == '__main__':
         words = yaml.safe_load(f.read())[:10000]
     words.sort(key=len, reverse=True) # Required to be sorted for generate parts.
 
-    wlist = generate_parts(words, 5*len(words)//1000) # If it's in 0.5% of words
+    wlist = generate_parts(words, 0.5) # If it's in 0.5% of words
 
-    print(len(wlist), wlist)
-    
     matches = make_match_list(wlist, words)
-    pprint(dict({k: len(v) for k,v in matches.items()}))
-
+    print(len(wlist), wlist)
+    print(dict({k: len(v) for k,v in matches.items()}))
     print(max(len(v) for v in matches.values()))
